@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+
+    <title>Add Student</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"> </script>
+
+
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <button type="button" id="addStudentButtonId" class="btn btn-primary btn-sm btn-inline" data-toggle="modal"
+                    data-target="#myModal" data-action="add-student">
+                Add Student
+            </button>
+        </div>
+
+        <div class="col-6 col-md-4">
+            <form class="form-inline" action="/" id="searchStudentForm">
+                <label class="sr-only" for="searchText">Name</label>
+                <input type="text" class="form-control mb-2 mr-sm-2" id="searchText" name="searchText"
+                       placeholder="Search Name">
+                <button type="submit" class="btn btn-primary mb-2 btn-sm">Search</button>
+            </form>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <table class="table" id="students">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">Course</th>
+                <th scope="col">Batch</th>
+                <th scope="col">Action</th>
+                <th scope="col">Action</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody id="studentsBody">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Add/Edit Student Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add/Edit Student</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/" id="studentAddEditForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <span id="message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentId">Student Id</label>
+                        <input type="text" readonly="true" class="form-control" id="studentId" name="studentId" aria-describedby="studentIdHelp">
+                    </div>
+                    <div class="form-group">
+                        <label for="studentName">Student Name</label>
+                        <input type="text" class="form-control" id="studentName" name="studentName" aria-describedby="studentNameHelp"
+                               placeholder="Enter Student Name">
+                        <small id="studentNameHelp" class="form-text text-muted">Please enter first name and last name
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="identificationNumber">Identification Number</label>
+                        <input type="text" class="form-control" id="identificationNumber" name="identificationNumber"
+                               aria-describedby="identificationNumberHelp" placeholder="Enter Student Id number">
+                        <small id="identificationNumberHelp" class="form-text text-muted">The Student id</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="batchId">Batch</label>
+                        <select class="form-control" id="batchId" name="batchId" aria-describedby="batchIdHelp">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <small id="batchIdHelp" class="form-text text-muted">The batch of the student</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<script src="students.js"> </script>
+</body>
+
+</html>
