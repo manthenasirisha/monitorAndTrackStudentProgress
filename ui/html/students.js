@@ -44,6 +44,26 @@ $("#myModal").on('show.bs.modal', function (event) {
 });
 
 
+function deleteItem(studentId) {
+    if (confirm("Are you sure you want to delete the student?")) {
+
+      var deleteStudentUrl = "http://localhost:3000/student/" + studentId;
+
+        $.ajax({
+            url: deleteStudentUrl,
+            method: 'POST',
+            success: function(result) {
+                $("#searchStudentForm").submit();
+                // show success message
+             },
+            data:{}
+        });
+
+    }
+    return false;
+}
+
+
 // Attach a submit handler to the form
 $("#studentAddEditForm").submit(function( event ) {
   // Stop form from submitting normally
@@ -125,7 +145,7 @@ $("#searchStudentForm").submit(function( event ) {
                     $('<td>').append($('<button>')
                          .attr('class','btn btn-warning btn-sm')
                          .attr('data-toggle', 'modal')
-                         .attr('data-target', '')
+                         .attr('data-target', '#myModal')
                          .attr('data-student-id', item.studentId)
                          .attr('data-action', 'edit')
                          .text('Edit')
@@ -137,7 +157,7 @@ $("#searchStudentForm").submit(function( event ) {
                        .attr('data-action', 'delete')
                        .text('Delete')
                        .click(function() {
-
+                           deleteItem(item.studentId);
                        })
                      )
                 ).appendTo('#studentsBody');
