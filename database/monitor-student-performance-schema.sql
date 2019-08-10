@@ -1,5 +1,7 @@
     CREATE  DATABASE `monitor_student_performance`;
 
+    USE `monitor_student_performance`;
+
     CREATE TABLE `student`
     (
       `id` int PRIMARY KEY AUTO_INCREMENT,
