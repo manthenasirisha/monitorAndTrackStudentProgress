@@ -56,7 +56,7 @@ $("#projectAddEditForm").submit(function( event ) {
   var $form = $( this ),
     projectId = $form.find( "input[name='projectId']" ).val(),
     projectName = $form.find( "input[name='projectName']" ).val(),
-    projectDescription = $form.find( "input[name='projectDescription']" ).val(),
+    projectDescription = $form.find( "textarea[name='projectDescription']" ).val(),
     saveUrl = "http://localhost:3000/project",
     editUrl = "http://localhost:3000/project/" + projectId;
 
