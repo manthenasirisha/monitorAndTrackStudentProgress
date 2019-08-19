@@ -19,3 +19,23 @@ Steps to  install :
 
 4) Copy the students.html and students.js into the XAMPP htdocs webdevpractical folder
 5) access the resource using http://localhost/webdevpractical/students.html
+
+
+TODO 
+
+Add Student -- done
+Add Project  -- done
+
+Student Page -- TODO 
+Project Page (also the tracking)
+    -- shows project
+    -- shows student
+    -- shows tracking information and feature to add the tracking information
+
+Add Supervisor -- TODO 
+Supervisor Page -- TODO
+    -- show all the supervisor projects
+    -- assign/un-assign projects to the supervisor
+    -- search by project name
+    -- search by student name
+        
