@@ -10,11 +10,9 @@ $("#myModal").on('show.bs.modal', function (event) {
   var studentId = relatedTarget.data('student-id');
   var action = relatedTarget.data('action');
 
-  if(action != 'edit') {
-      $("#studentAddEditForm").trigger("reset");
-      $( "#message" ).removeClass();
-      $( "#message" ).empty();
-  }
+  $("#studentAddEditForm").trigger("reset");
+  $( "#message" ).removeClass();
+  $( "#message" ).empty();
 
   var getAllBatchesUrl = "http://localhost:3000/batch/all";
 

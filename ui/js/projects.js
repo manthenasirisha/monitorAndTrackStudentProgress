@@ -10,11 +10,10 @@ $("#projectModal").on('show.bs.modal', function (event) {
   var projectId = relatedTarget.data('project-id');
   var action = relatedTarget.data('action');
 
-  if(action != 'edit') {
-      $("#projectAddEditForm").trigger("reset");
-      $( "#message" ).removeClass();
-      $( "#message" ).empty();
-  }
+
+  $("#projectAddEditForm").trigger("reset");
+  $( "#message" ).removeClass();
+  $( "#message" ).empty();
 
    if(action === 'edit') {
         var getProjectUrl = "http://localhost:3000/project/" + projectId;

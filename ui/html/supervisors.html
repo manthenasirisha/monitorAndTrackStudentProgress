@@ -27,7 +27,7 @@
                     data-toggle="modal"
                     data-target="#supervisorModal"
                     data-action="add-supervisor">
-                Add Project
+                Add Supervisor
             </button>
         </div>
 
@@ -51,7 +51,6 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Supervisor Name</th>
-                <th scope="col">Supervisor description</th>
                 <th scope="col">Action</th>
                 <th scope="col">Action</th>
             </tr>
@@ -62,12 +61,12 @@
     </div>
 </div>
 
-<!-- Add/Edit Project  Modal -->
+<!-- Add/Edit supervisor  Modal -->
 <div class="modal fade" id="supervisorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add/Edit Project</h5>
+                <h5 class="modal-title">Add/Edit Supervisor</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -89,10 +88,10 @@
                         </small>
                     </div>
                     <div class="form-group">
-                        <label for="supervisorDescription">Supervisor Description</label>
-                        <textarea  class="form-control" rows="10" id="supervisorDescription" name="supervisorDescription"
-                                   aria-describedby="supervisorDescription" placeholder="Enter supervisor description"> </textarea>
-                        <small id="supervisorDescriptionHelp" class="form-text text-muted">Supervisor Description</small>
+                        <label for="supervisorIdentificationNumber">Supervisor Id Number</label>
+                        <input  type="text" class="form-control" rows="10" id="supervisorIdentificationNumber" name="supervisorIdentificationNumber"
+                                   aria-describedby="supervisorIdentificationNumber" placeholder="Enter supervisor id number"> </input>
+                        <small id="supervisorIdentificationNumberHelp" class="form-text text-muted">Supervisor Id Number</small>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -113,7 +112,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-<script src="projects.js"> </script>
+<script src="supervisors.js"> </script>
 </body>
 
 </html>

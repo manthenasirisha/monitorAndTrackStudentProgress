@@ -15,7 +15,7 @@ VALUES
     ('PE', 'Proposal - Ethical'),
     ('RV1', 'Report Version 1'),
     ('RV2', 'Report Version 2'),
-    ('M', 'Meeting'),
+    --('M', 'Meeting'),
     ('PRSN', 'Presentation'),
     ('PSTR', 'Poster'),
     ('DRP', 'Draft Report'),

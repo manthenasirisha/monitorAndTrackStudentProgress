@@ -4,6 +4,7 @@ module.exports = function(app) {
   var studentController = require('../controller/studentController');
   var projectController = require('../controller/projectController');
   var batchController = require('../controller/batchController');
+  var supervisorController = require('../controller/supervisorController');
   var cors = require('cors');
 
   app.use(cors());
@@ -39,5 +40,19 @@ module.exports = function(app) {
    .post(projectController.deleteProject);
   app.route('/project/:projectId')
    .put(projectController.updateProject);
+
+     // project routes
+    app.route('/supervisor')
+    .post(supervisorController.saveSupervisor);
+    app.route('/supervisor')
+    .get(supervisorController.searchSupervisors);
+    app.route('/supervisor/all')
+    .get(supervisorController.getAllSupervisors);
+    app.route('/supervisor/:supervisorId')
+    .get(supervisorController.getSupervisor);
+    app.route('/supervisor/:supervisorId')
+    .post(supervisorController.deleteSupervisor);
+    app.route('/supervisor/:supervisorId')
+    .put(supervisorController.updateSupervisor);
 
  };
