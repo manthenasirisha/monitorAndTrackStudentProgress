@@ -34,6 +34,8 @@ module.exports = function(app) {
    .get(projectController.searchProjects);
   app.route('/project/all')
    .get(projectController.getAllProjects);
+  app.route('/project/all/un-assigned')
+   .get(projectController.getAllUnassignedProjects);
   app.route('/project/:projectId')
    .get(projectController.getProject);
   app.route('/project/:projectId')

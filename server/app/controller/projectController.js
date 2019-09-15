@@ -54,6 +54,23 @@ exports.getAllProjects = function(request, response) {
 
 };
 
+exports.getAllUnassignedProjects = function(request, response) {
+
+  Project.getAllUnassignedProjects(function(err, unassignedProjects) {
+    console.log('controller')
+   response.header("Access-Control-Allow-Origin", "*");
+   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+
+    if (err) {
+      response.send(err);
+    }
+
+    response.send(unassignedProjects);
+  });
+
+};
+
 exports.getProject = function(request, response) {
 
    var projectId = request.params.projectId;

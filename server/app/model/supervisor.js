@@ -128,10 +128,15 @@ Supervisor.deleteSupervisor = function deleteSupervisor(supervisorId, callback) 
   );
 }
 
-Supervisor.supervisorProjects = function supervisorProjects(supervisorId, callback) {
+Supervisor.supervisorProjects = function supervisorProjects(supervisorId, searchString,  callback) {
 
   var values = [supervisorId];
-var projectsQuery = "select p.id, p.name, p.description from supervisor_project sp, project p where p.id = sp.project_id and sp.supervisor_id = ?";
+  var projectsQuery;
+  if (searchString) {
+       projectsQuery = "select p.id, p.name, p.description from supervisor_project sp, project p where p.id = sp.project_id and sp.supervisor_id = ? and p.name like '%" +  searchString + "%'";
+   } else {
+       projectsQuery = "select p.id, p.name, p.description from supervisor_project sp, project p where p.id = sp.project_id and sp.supervisor_id = ?";
+   }
 
   dbConnection.query (
     projectsQuery,

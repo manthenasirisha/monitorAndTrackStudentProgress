@@ -113,10 +113,12 @@ exports.searchSupervisors = function(request, response) {
 exports.supervisorProjects = function(request, response) {
 
     var supervisorId = request.params.supervisorId;
+    var searchString = request.query.q
+
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-    Supervisor.supervisorProjects(supervisorId ,function(err, supervisorProjects) {
+    Supervisor.supervisorProjects(supervisorId , searchString, function(err, supervisorProjects) {
 
       if (err) {
         response.send(err);
