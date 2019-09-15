@@ -109,7 +109,7 @@ $("#searchProjectForm").submit(function( event ) {
             $.each(data.projects, function(i, item) {
 
                 var $tr = $('<tr>').append(
-                    $('<th>').attr('scope', 'row').text(i),
+                    $('<th>').text(item.id),
                     $('<td>').text(item.name),
                     $('<td>').text(item.description),
                     $('<td>').append($('<button>')

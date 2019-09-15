@@ -128,7 +128,7 @@ $("#searchStudentForm").submit(function( event ) {
             $.each(data.students, function(i, item) {
 
                 var $tr = $('<tr>').append(
-                    $('<th>').attr('scope', 'row').text(i),
+                    $('<th>').text(item.id),
                     $('<td>').text(item.studentName),
                     $('<td>').text(item.programName),
                     $('<td>').text(item.batchStartDate),

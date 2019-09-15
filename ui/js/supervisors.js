@@ -108,7 +108,7 @@ $("#searchSupervisorForm").submit(function( event ) {
             $.each(data.supervisors, function(i, item) {
 
                 var $tr = $('<tr>').append(
-                    $('<th>').attr('scope', 'row').text(i),
+                    $('<th>').text(item.id),
                     $('<td>').text(item.name),
                     $('<td>').text(item.identificationNumber),
                     $('<td>').append($('<button>')
