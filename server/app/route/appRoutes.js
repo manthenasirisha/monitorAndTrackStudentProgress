@@ -55,4 +55,13 @@ module.exports = function(app) {
     app.route('/supervisor/:supervisorId')
     .put(supervisorController.updateSupervisor);
 
+    app.route('/supervisor/:supervisorId/projects')
+    .get(supervisorController.supervisorProjects);
+
+    app.route('/supervisor/:supervisorId/assign-project/project/:projectId')
+    .put(supervisorController.assignProject);
+
+    app.route('/supervisor/:supervisorId/un-assign-project/project/:projectId')
+    .put(supervisorController.unAssignProject);
+
  };

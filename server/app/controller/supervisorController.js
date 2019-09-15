@@ -93,7 +93,7 @@ exports.deleteSupervisor = function(request, response) {
 
 exports.searchSupervisors = function(request, response) {
 
-    var searchString = request.query.q
+   var searchString = request.query.q
    response.header("Access-Control-Allow-Origin", "*");
    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
@@ -108,4 +108,58 @@ exports.searchSupervisors = function(request, response) {
     response.send(supervisors);
   });
 
+};
+
+exports.supervisorProjects = function(request, response) {
+
+    var supervisorId = request.params.supervisorId;
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+    Supervisor.supervisorProjects(supervisorId ,function(err, supervisorProjects) {
+
+      if (err) {
+        response.send(err);
+        return;
+      }
+
+      response.send(supervisorProjects);
+    });
+};
+
+exports.assignProject = function(request, response) {
+
+    var supervisorId = request.params.supervisorId;
+    var projectId = request.params.projectId;
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+    Supervisor.assignProject(supervisorId, projectId ,function(err, supervisorProjects) {
+
+      if (err) {
+        response.send(err);
+        return;
+      }
+
+      response.send(supervisorProjects);
+    });
+};
+
+
+exports.unAssignProject = function(request, response) {
+
+    var supervisorId = request.params.supervisorId;
+    var projectId = request.params.projectId;
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+    Supervisor.unAssignProject(supervisorId, projectId ,function(err, supervisorProjects) {
+
+      if (err) {
+        response.send(err);
+        return;
+      }
+
+      response.send(supervisorProjects);
+    });
 };
