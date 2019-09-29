@@ -155,6 +155,107 @@ Project.getAllUnassignedProjects = function getAllUnassignedProjects(callback) {
   );
 }
 
+Project.getProjectPhase = function getProjectPhase(projectId, phaseId, callback) {
+
+  var query = "SELECT id, project_id, phase_id, notes, submission_date FROM project_tracking WHERE project_id = " + projectId + " and phase_id = " + phaseId ;
+
+  dbConnection.query (query,
+    function (err, result) {
+        if(err) {
+            console.log("error: ", err);
+            callback(err, null);
+        }
+        else {
+            console.log("result", result);
+            var returnVal = {};
+            if(result.length > 0) {
+                returnVal = {
+                    id : result[0].id,
+                    projectId : result[0].project_id,
+                    phaseId : result[0].phase_id,
+                    notes : result[0].notes,
+                    submissionDate : result[0].submission_date,
+                };
+            }
+
+            callback(null, returnVal);
+        }
+     }
+  );
+}
+
+Project.saveProjectPhase = function saveProjectPhase(projectPhase, projectId, phaseId, callback) {
+
+  var now = new Date();
+  var values = [projectId, phaseId, projectPhase.notes, now];
+  console.log(values);
+
+  dbConnection.query (
+    "INSERT INTO project_tracking(project_id, phase_id, notes, submission_date) VALUES (?, ?, ?, ?)",
+    values,
+    function (err, result) {
+        if(err) {
+            console.log("error: ", err);
+            callback(err, null);
+        }
+        else {
+            var responsePayload = {
+                id: result.insertId,
+                projectId: projectId,
+                phaseId: phaseId,
+                notes: projectPhase.notes,
+                submissionDate: now
+            };
+            callback(null, responsePayload);
+        }
+     }
+  );
+}
+
+Project.deleteProjectPhase = function deleteProjectPhase(projectId, phaseId, callback) {
+
+    var query = "DELETE FROM project_tracking WHERE project_id = " + projectId + " and phase_id = " + phaseId;
+
+    dbConnection.query (query,
+      function (err, result) {
+          if(err) {
+              console.log("error: ", err);
+              callback(err, null);
+          }
+          else {
+              console.log("result", result);
+              callback(null, null);
+          }
+       }
+    );
+}
+
+Project.getAllProjectPhases = function getAllProjectPhases(projectId, callback) {
+
+  var query = "SELECT id, project_id, phase_id, notes, submission_date FROM project_tracking WHERE project_id = " + projectId;
+
+  dbConnection.query (query,
+    function (err, result) {
+        if(err) {
+            console.log("error: ", err);
+            callback(err, null);
+        } else {
+            var projectPhases = [];
+            result.forEach(function(item) {
+                projectPhases.push({
+                  id : result[0].id,
+                  projectId : result[0].project_id,
+                  phaseId : result[0].phase_id,
+                  notes : result[0].notes,
+                  submissionDate : result[0].submission_date,
+              });
+            });
+
+            callback(null, { projectPhases: projectPhases } );
+        }
+     }
+  );
+}
 
 module.exports = Project;
 

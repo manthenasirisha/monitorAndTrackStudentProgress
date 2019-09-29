@@ -43,6 +43,15 @@ module.exports = function(app) {
   app.route('/project/:projectId')
    .put(projectController.updateProject);
 
+  app.route('/project/:projectId/phase/:phaseId')
+      .post(projectController.saveProjectPhase);
+  app.route('/project/:projectId/phase/:phaseId')
+        .get(projectController.getProjectPhase);
+  app.route('/project/:projectId/phases')
+      .get(projectController.getAllProjectPhases);
+  app.route('/project/:projectId/phase/:phaseId')
+      .put(projectController.deleteProjectPhase);
+
      // project routes
     app.route('/supervisor')
     .post(supervisorController.saveSupervisor);

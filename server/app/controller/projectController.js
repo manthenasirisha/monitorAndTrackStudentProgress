@@ -126,3 +126,82 @@ exports.searchProjects = function(request, response) {
   });
 
 };
+
+exports.saveProjectPhase = function(request, response) {
+
+   var projectId = request.params.projectId;
+   var phaseId = request.params.phaseId;
+
+  Project.saveProjectPhase(request.body, projectId, phaseId , function(err, savedProjectPhase) {
+   console.log('controller')
+   response.header("Access-Control-Allow-Origin", "*");
+   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+    if (err) {
+      response.send(err);
+      return;
+    }
+
+    response.send(savedProjectPhase);
+  });
+
+};
+
+
+exports.getProjectPhase = function(request, response) {
+
+   var projectId = request.params.projectId;
+   var phaseId = request.params.phaseId;
+
+  Project.getProjectPhase(projectId, phaseId , function(err, projectPhase) {
+   console.log('controller')
+   response.header("Access-Control-Allow-Origin", "*");
+   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+    if (err) {
+      response.send(err);
+      return;
+    }
+
+    response.send(projectPhase);
+  });
+
+};
+
+exports.getAllProjectPhases = function(request, response) {
+
+  var projectId = request.params.projectId;
+
+  Project.getAllProjectPhases(projectId, function(err, projectPhases) {
+   console.log('controller')
+   response.header("Access-Control-Allow-Origin", "*");
+   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+    if (err) {
+      response.send(err);
+      return;
+    }
+
+    response.send(projectPhases);
+  });
+
+};
+
+exports.deleteProjectPhase = function(request, response) {
+
+   var  projectId = request.params.projectId;
+   var  phaseId = request.params.phaseId;
+   response.header("Access-Control-Allow-Origin", "*");
+   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+  Project.deleteProjectPhase(projectId, phaseId ,function(err, output) {
+
+    if (err) {
+      response.send(err);
+      return;
+    }
+
+    response.send(null);
+  });
+
+};
