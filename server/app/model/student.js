@@ -117,7 +117,7 @@ Student.getStudent = function getStudent(studentId, callback) {
 
   console.log("studentId", studentId);
 
-  var query = "SELECT id, name, identification_number, batch_id FROM student WHERE id = " + studentId;
+  var query = "SELECT id, name, identification_number, batch_id, project_id FROM student WHERE id = " + studentId;
 
   dbConnection.query (query,
     function (err, result) {
@@ -133,7 +133,8 @@ Student.getStudent = function getStudent(studentId, callback) {
                     id : result[0].id,
                     name : result[0].name,
                     identificationNumber : result[0].identification_number,
-                    batchId : result[0].batch_id
+                    batchId : result[0].batch_id,
+                    projectId: result[0].project_id
                 };
             }
 

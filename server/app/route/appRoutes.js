@@ -42,6 +42,8 @@ module.exports = function(app) {
    .post(projectController.deleteProject);
   app.route('/project/:projectId')
    .put(projectController.updateProject);
+  app.route('/project/:projectId/student')
+      .get(projectController.getStudentOfProject);
 
   app.route('/project/:projectId/phase/:phaseId')
       .post(projectController.saveProjectPhase);
@@ -51,6 +53,8 @@ module.exports = function(app) {
       .get(projectController.getAllProjectPhases);
   app.route('/project/:projectId/phase/:phaseId')
       .put(projectController.deleteProjectPhase);
+  app.route('/project/:projectId/pending-phases')
+        .get(projectController.getPendingPhasesOfProject);
 
      // project routes
     app.route('/supervisor')

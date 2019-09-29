@@ -205,3 +205,41 @@ exports.deleteProjectPhase = function(request, response) {
   });
 
 };
+
+
+exports.getStudentOfProject = function(request, response) {
+
+   var projectId = request.params.projectId;
+   response.header("Access-Control-Allow-Origin", "*");
+   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+  Project.getStudentOfProject(projectId ,function(err, student) {
+
+    if (err) {
+      response.send(err);
+      return;
+    }
+
+    response.send(student);
+  });
+
+};
+
+
+exports.getPendingPhasesOfProject = function(request, response) {
+
+   var projectId = request.params.projectId;
+   response.header("Access-Control-Allow-Origin", "*");
+   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+  Project.getPendingPhasesOfProject(projectId ,function(err, student) {
+
+    if (err) {
+      response.send(err);
+      return;
+    }
+
+    response.send(student);
+  });
+
+};
