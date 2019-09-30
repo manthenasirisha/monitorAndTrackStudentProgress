@@ -88,7 +88,7 @@ $("#projectTrackingModal").on('show.bs.modal', function (event) {
        $.get( getAllProjectPhasesUrl, function(projectPhasesResponse) {
        $('#phaseId').empty();
         $.each(projectPhasesResponse.projectPhases,function(index, item) {
-                $('#phaseId').append("<option id='" +  item.id + "'>" + item.phaseDescription + "</option>");
+                $('#phaseId').append("<option id='" +  item.phaseId + "'>" + item.phaseDescription + "</option>");
             });
        });
     }
