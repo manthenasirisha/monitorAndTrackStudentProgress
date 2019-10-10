@@ -27,18 +27,29 @@ $("#myModal").on('show.bs.modal', function (event) {
   $.get( getAllBatchesUrl, function(batchData) {
      $.each(batchData.batches, function (key, entry) {
         dropdown.append($('<option></option>').attr('value', entry.programId).text(entry.programName));
-      })
+      });
 
-   if(action === 'edit') {
-        var getStudentUrl = "http://localhost:3000/student/" + studentId;
-        $.get( getStudentUrl, function(studentData) {
-            $('#studentId').val(studentData.id);
-            $('#studentName').val(studentData.name);
-            $('#identificationNumber').val(studentData.identificationNumber);
-            $('#batchId').val(studentData.batchId);
-        });
-    }
+     var getAssignableProjectsUrl = "http://localhost:3000/student/" + studentId + "/assignableProjects";
+     $.get( getAssignableProjectsUrl, function(assignableProjectsResponse) {
+     $('#projectId').empty();
+      $.each(assignableProjectsResponse.assignableProjects, function(index, item) {
+              $('#projectId').append($('<option></option>').attr('value', item.id).text(item.name));
+          });
+
+     if(action === 'edit') {
+          var getStudentUrl = "http://localhost:3000/student/" + studentId;
+          $.get( getStudentUrl, function(studentData) {
+              $('#studentId').val(studentData.id);
+              $('#studentName').val(studentData.name);
+              $('#identificationNumber').val(studentData.identificationNumber);
+              $('#batchId').val(studentData.batchId);
+              $('#projectId').val(studentData.projectId);
+          });
+      }
+     });
+
   });
+
 });
 
 
@@ -73,6 +84,7 @@ $("#studentAddEditForm").submit(function( event ) {
     studentName = $form.find( "input[name='studentName']" ).val(),
     identificationNumber = $form.find( "input[name='identificationNumber']" ).val(),
     batchId = $form.find( "select[name='batchId']" ).val(),
+    projectId = $form.find( "select[name='projectId']" ).val(),
     saveUrl = "http://localhost:3000/student",
     editUrl = "http://localhost:3000/student/" + studentId;
 
@@ -80,7 +92,7 @@ $("#studentAddEditForm").submit(function( event ) {
   // Send the data using post
   var posting;
   if(studentId == null || studentId === "") {
-        posting = $.post( saveUrl, { name: studentName, identificationNumber: identificationNumber, batchId: batchId  } );
+        posting = $.post( saveUrl, { name: studentName, identificationNumber: identificationNumber, batchId: batchId, projectId: projectId  } );
           // Put the results in a div
         posting.done(function( data ) {
             $("input[name='studentId']" ).val(data.id);
@@ -97,7 +109,7 @@ $("#studentAddEditForm").submit(function( event ) {
         success: function() {
             $( "#message" ).attr('class', 'alert alert-success').empty().append( "Student saved successfully" );
         },
-        data: { "id": studentId, "name": studentName, "identificationNumber": identificationNumber, "batchId": batchId  }
+        data: { "id": studentId, "name": studentName, "identificationNumber": identificationNumber, "batchId": batchId, "projectId": projectId }
       });
   }
 

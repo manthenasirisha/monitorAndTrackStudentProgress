@@ -115,3 +115,21 @@ exports.searchStudent = function(request, response) {
   });
 
 };
+
+exports.getAllAssignableProjectsForAStudent = function(request, response) {
+
+   var studentId = request.params.studentId;
+   response.header("Access-Control-Allow-Origin", "*");
+   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+  Student.getAllAssignableProjectsForAStudent(studentId ,function(err, assignableProjectsForStudent) {
+
+    if (err) {
+      response.send(err);
+      return;
+    }
+
+    response.send(assignableProjectsForStudent);
+  });
+
+};

@@ -9,11 +9,11 @@ var Student = function(student) {
 
 Student.saveStudent = function insertStudent(student, callback) {
 
-  var values = [student.name, student.identificationNumber , student.batchId];
+  var values = [student.name, student.identificationNumber , student.batchId, student.projectId];
   console.log(values);
 
   dbConnection.query (
-    "INSERT INTO student(name, identification_number, batch_id) VALUES (?, ?, ?)",
+    "INSERT INTO student(name, identification_number, batch_id, project_id) VALUES (?, ?, ?, ?)",
     values,
     function (err, result) {
         if(err) {
@@ -25,7 +25,8 @@ Student.saveStudent = function insertStudent(student, callback) {
                 id: result.insertId,
                 name: student.name,
                 identificationNumber: student.identificationNumber,
-                batchId: student.batchId
+                batchId: student.batchId,
+                projectId: student.projectId
             };
             callback(null, responsePayload);
         }
@@ -36,11 +37,11 @@ Student.saveStudent = function insertStudent(student, callback) {
 
 Student.updateStudent = function updateStudent(student, callback) {
 
-  var values = [student.name, student.identificationNumber , student.batchId];
+  var values = [student.name, student.identificationNumber , student.batchId, student.projectId];
   console.log(values);
 
   dbConnection.query (
-    "UPDATE student set name = ?, identification_number = ?, batch_id = ? where id =" + student.id,
+    "UPDATE student set name = ?, identification_number = ?, batch_id = ?, project_id = ? where id =" + student.id,
     values,
     function (err, result) {
         if(err) {
@@ -52,7 +53,8 @@ Student.updateStudent = function updateStudent(student, callback) {
                 id: student.id,
                 name: student.name,
                 identificationNumber: student.identificationNumber,
-                batchId: student.batchId
+                batchId: student.batchId,
+                projectId: student.projectId
             };
             callback(null, responsePayload);
         }
@@ -163,6 +165,36 @@ Student.deleteStudent = function deleteStudent(studentId, callback) {
      }
   );
 }
+
+Student.getAllAssignableProjectsForAStudent = function getAllAssignableProjectsForAStudent(studentId, callback) {
+
+  var values = [studentId];
+
+  dbConnection.query (
+    "select p.id, p.name, p.description from project p where p.id not in (select project_id from student where	project_id is not null) UNION select p.id,	p.name,	p.description from	project p where id in (select project_id from student where id = ?)",
+    values,
+    function (err, result) {
+        if(err) {
+            console.log("error: ", err);
+            callback(err, null);
+        }
+        else {
+            var assignableProjectsArray = [];
+            result.forEach(function(item) {
+                assignableProjectsArray.push( {
+                    id : item.id,
+                    name : item.name,
+                    description : item.description,
+                 });
+            });
+
+            callback(null, { assignableProjects: assignableProjectsArray } );
+        }
+     }
+  );
+}
+
+
 
 module.exports = Student;
 

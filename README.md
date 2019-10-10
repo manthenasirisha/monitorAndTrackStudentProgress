@@ -8,7 +8,7 @@ Details
 	→ Add a student
 	→ Search a student
 	→ Edit a student information
-	→ Delete a Student
+	→ Delete a Student**
 
 
 Steps to  install :
@@ -23,32 +23,8 @@ Steps to  install :
 
 TODO 
 
-Add Student -- done
-Add Project  -- done
-Add Supervisor -- done 
-
-Student Page -- TODO 
-Project Page (also the tracking) -- can be called Student project
-    -- shows project
-    -- shows student
-    -- shows tracking information and feature to add the tracking information
-    -- Items todo for this page
-        -- Shows three items on that page
-            -- Student information of fixed frame
-                -- Student Name, Student Program, Batch 
-            -- Project information of fixed frame
-                -- Project title, description 
-            -- Tracking information
-                -- Come up with  
-
-Supervisor Page -- TODO
-    -- show all the supervisor projects
-    -- assign/un-assign projects to the supervisor
-    -- search by project name
-    -- search by student name
-    -- Items todo for this page
-        -- assign is done with a popup where it will show all the projects and you can select one from
-        -- un-assign is done with a button on each project currently assigned to the supervisor
-        -- search widget with project name and student name which lists the projects with the search criteria
+-- Assign project to student 
+    -- Popup to show the items
+    -- 
         
                 

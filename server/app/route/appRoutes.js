@@ -23,6 +23,8 @@ module.exports = function(app) {
         .post(studentController.deleteStudent);
   app.route('/student/:studentId')
         .put(studentController.updateStudent);
+  app.route('/student/:studentId/assignableProjects')
+          .get(studentController.getAllAssignableProjectsForAStudent);
 
   app.route('/batch/all')
     .get(batchController.getAllBatches);
