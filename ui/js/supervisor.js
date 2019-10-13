@@ -97,7 +97,10 @@ $("#searchProjectForm").submit(function( event ) {
 
                 var $tr = $('<tr>').append(
                     $('<th>').text(item.id),
-                    $('<td>').text(item.name),
+                    $('<td>').append($('<a>')
+                         .attr('href', 'project.html?projectId=' + item.id)
+                         .text(item.name)
+                        ),
                    $('<td>').append($('<button>')
                        .attr('class','btn btn-danger btn-sm')
                        .attr('data-toggle', 'modal')
