@@ -117,19 +117,19 @@ $("#searchProjectForm").submit(function( event ) {
                     $('<td>').text(item.name),
                     $('<td>').text(item.description),
                     $('<td>').append($('<button>')
-                         .attr('class','btn btn-warning btn-sm')
+                         .attr('class','btn btn-primary btn-sm')
                          .attr('data-toggle', 'modal')
                          .attr('data-target', '#projectModal')
                          .attr('data-project-id', item.id)
                          .attr('data-action', 'edit')
-                         .text('Edit')
+                         .text('Edit Project')
                        ),
                    $('<td>').append($('<button>')
                        .attr('class','btn btn-danger btn-sm')
                        .attr('data-toggle', 'modal')
                        .attr('data-project-id', item.id)
                        .attr('data-action', 'delete')
-                       .text('Delete')
+                       .text('Delete Project')
                        .click(function() {
                            deleteProject(item.id);
                        })

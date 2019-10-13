@@ -116,19 +116,19 @@ $("#searchSupervisorForm").submit(function( event ) {
                     $('<td>').text(item.name),
                     $('<td>').text(item.identificationNumber),
                     $('<td>').append($('<button>')
-                         .attr('class','btn btn-warning btn-sm')
+                         .attr('class','btn btn-primary btn-sm')
                          .attr('data-toggle', 'modal')
                          .attr('data-target', '#supervisorModal')
                          .attr('data-supervisor-id', item.id)
                          .attr('data-action', 'edit')
-                         .text('Edit')
+                         .text('Edit Supervisor')
                        ),
                    $('<td>').append($('<button>')
                        .attr('class','btn btn-danger btn-sm')
                        .attr('data-toggle', 'modal')
                        .attr('data-supervisor-id', item.id)
                        .attr('data-action', 'delete')
-                       .text('Delete')
+                       .text('Delete Supervisor')
                        .click(function() {
                            deleteSupervisor(item.id);
                        })

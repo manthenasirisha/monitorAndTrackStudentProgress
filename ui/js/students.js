@@ -144,32 +144,24 @@ $("#searchStudentForm").submit(function( event ) {
             $.each(data.students, function(i, item) {
 
                 var $tr = $('<tr>').append(
-                    $('<th>').text(item.id),
+                    $('<th>').text(item.studentId),
                     $('<td>').text(item.studentName),
                     $('<td>').text(item.programName),
                     $('<td>').text(item.batchStartDate),
                     $('<td>').append($('<button>')
-                        .attr('class','btn btn-primary btn-sm')
-                        .attr('data-toggle', '')
-                        .attr('data-target', '')
-                        .attr('data-student-id', item.studentId)
-                        .attr('data-action', 'assign')
-                        .text('Assign/Reassign')
-                     ),
-                    $('<td>').append($('<button>')
-                         .attr('class','btn btn-warning btn-sm')
+                         .attr('class','btn btn-primary btn-sm')
                          .attr('data-toggle', 'modal')
                          .attr('data-target', '#myModal')
                          .attr('data-student-id', item.studentId)
                          .attr('data-action', 'edit')
-                         .text('Edit')
+                         .text('Edit Student')
                        ),
                    $('<td>').append($('<button>')
                        .attr('class','btn btn-danger btn-sm')
                        .attr('data-toggle', 'modal')
                        .attr('data-student-id', item.studentId)
                        .attr('data-action', 'delete')
-                       .text('Delete')
+                       .text('Delete Student')
                        .click(function() {
                            deleteItem(item.studentId);
                        })
