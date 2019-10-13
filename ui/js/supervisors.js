@@ -1,6 +1,10 @@
        // data-* attributes to scan when populating modal values
 var ATTRIBUTES = ['project-id','action'];
 
+(function() {
+    $("#supervisorsLink").addClass("active");
+})();
+
 $('#supervisorModal').on('hidden.bs.modal', function (event) {
     $("#searchSupervisorForm").submit();
 });
