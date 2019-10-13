@@ -114,7 +114,10 @@ $("#searchProjectForm").submit(function( event ) {
 
                 var $tr = $('<tr>').append(
                     $('<th>').text(item.id),
-                    $('<td>').text(item.name),
+                    $('<td>').append($('<a>')
+                         .attr('href', 'project.html?projectId=' + item.id)
+                         .text(item.name)
+                        ),
                     $('<td>').text(item.description),
                     $('<td>').append($('<button>')
                          .attr('class','btn btn-primary btn-sm')

@@ -145,7 +145,10 @@ $("#searchStudentForm").submit(function( event ) {
 
                 var $tr = $('<tr>').append(
                     $('<th>').text(item.studentId),
-                    $('<td>').text(item.studentName),
+                    $('<td>').append($('<a>')
+                            .attr('href', 'project.html?studentId=' + item.studentId)
+                            .text(item.studentName)
+                            ),
                     $('<td>').text(item.programName),
                     $('<td>').text(item.batchStartDate),
                     $('<td>').append($('<button>')
