@@ -1,10 +1,6 @@
        // data-* attributes to scan when populating modal values
 var ATTRIBUTES = ['student-id','action'];
 
-(function() {
-    $("#studentsLink").addClass("active");
-})();
-
 $('#myModal').on('hidden.bs.modal', function (event) {
     $("#searchStudentForm").submit();
 });
@@ -176,3 +172,8 @@ $("#searchStudentForm").submit(function( event ) {
 
   });
 });
+
+(function() {
+    $("#studentsLink").addClass("active");
+    $("#searchStudentForm").submit();
+})();

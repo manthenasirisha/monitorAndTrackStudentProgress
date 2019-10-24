@@ -1,9 +1,6 @@
        // data-* attributes to scan when populating modal values
 var ATTRIBUTES = ['project-id','action'];
 
-(function() {
-    $("#projectsLink").addClass("active");
-})();
 
 $('#projectModal').on('hidden.bs.modal', function (event) {
     $("#searchProjectForm").submit();
@@ -144,3 +141,8 @@ $("#searchProjectForm").submit(function( event ) {
 
   });
 });
+
+(function() {
+    $("#projectsLink").addClass("active");
+        $("#searchProjectForm").submit();
+})();
