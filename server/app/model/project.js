@@ -130,31 +130,6 @@ Project.deleteProject = function deleteProject(projectId, callback) {
   );
 }
 
-Project.getAllUnassignedProjects = function getAllUnassignedProjects(callback) {
-
-  dbConnection.query (
-    "select p.id, p.name, p.description from project  p where id not in (select project_id from supervisor_project)",
-    function (err, result) {
-        if(err) {
-            console.log("error: ", err);
-            callback(err, null);
-        }
-        else {
-            var unassignedProjectsArray = [];
-            result.forEach(function(item) {
-                unassignedProjectsArray.push( {
-                    id : item.id,
-                    name : item.name,
-                    description : item.description,
-                 });
-            });
-
-            callback(null, { unassignedProjects: unassignedProjectsArray } );
-        }
-     }
-  );
-}
-
 Project.getProjectPhase = function getProjectPhase(projectId, phaseId, callback) {
 
   var query = "SELECT id, project_id, phase_id, notes, submission_date FROM project_tracking WHERE project_id = " + projectId + " and phase_id = " + phaseId ;

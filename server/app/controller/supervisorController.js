@@ -165,3 +165,20 @@ exports.unAssignProject = function(request, response) {
       response.send(supervisorProjects);
     });
 };
+
+exports.getAssignableProjects = function(request, response) {
+
+  var supervisorId = request.params.supervisorId;
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+  Supervisor.getAssignableProjects(supervisorId, function(err, assignableProjects) {
+
+    if (err) {
+      response.send(err);
+    }
+
+    response.send(assignableProjects);
+  });
+
+};

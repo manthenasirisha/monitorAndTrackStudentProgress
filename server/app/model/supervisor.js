@@ -205,6 +205,34 @@ Supervisor.unAssignProject = function unAssignProject(supervisorId, projectId, c
 }
 
 
+Supervisor.getAssignableProjects = function getAssignableProjects(supervisorId, callback) {
+
+  var values = [supervisorId];
+
+  dbConnection.query (
+    "select p.id, p.name, p.description from project  p where id not in (select project_id from supervisor_project where supervisor_id = ?)",
+    values,
+    function (err, result) {
+        if(err) {
+            console.log("error: ", err);
+            callback(err, null);
+        }
+        else {
+            var assignableProjectsArray = [];
+            result.forEach(function(item) {
+                assignableProjectsArray.push( {
+                    id : item.id,
+                    name : item.name,
+                    description : item.description,
+                 });
+            });
+
+            callback(null, { assignableProjects: assignableProjectsArray } );
+        }
+     }
+  );
+}
+
 module.exports = Supervisor;
 
 

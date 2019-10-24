@@ -17,10 +17,10 @@ $("#assignProjectModal").on('show.bs.modal', function (event) {
   $( "#message" ).removeClass();
   $( "#message" ).empty();
 
-   var gerUnAssignedProjectsUrl = "http://localhost:3000/project/all/un-assigned";
-   $.get( gerUnAssignedProjectsUrl, function(unAssignProjectsResponse) {
+   var getAssignableProjectsUrl = "http://localhost:3000/supervisor/"+ supervisorId + "/assignableProjects";
+   $.get( getAssignableProjectsUrl, function(assignableProjectsResponse) {
    $('#projectId').empty();
-    $.each(unAssignProjectsResponse.unassignedProjects,function(index, item) {
+    $.each(assignableProjectsResponse.assignableProjects,function(index, item) {
             $('#projectId').append("<option id='" +  item.id + "'>" + item.name + "</option>");
         });
    });
@@ -118,3 +118,8 @@ $("#searchProjectForm").submit(function( event ) {
 
   });
 });
+
+
+(function() {
+    $("#searchProjectForm").submit();
+})();

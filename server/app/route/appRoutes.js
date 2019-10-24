@@ -36,8 +36,6 @@ module.exports = function(app) {
    .get(projectController.searchProjects);
   app.route('/project/all')
    .get(projectController.getAllProjects);
-  app.route('/project/all/un-assigned')
-   .get(projectController.getAllUnassignedProjects);
   app.route('/project/:projectId')
    .get(projectController.getProject);
   app.route('/project/:projectId')
@@ -81,4 +79,6 @@ module.exports = function(app) {
     app.route('/supervisor/:supervisorId/un-assign-project/project/:projectId')
     .put(supervisorController.unAssignProject);
 
+    app.route('/supervisor/:supervisorId/assignableProjects')
+    .get(supervisorController.getAssignableProjects);
  };
