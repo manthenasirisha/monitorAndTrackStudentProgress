@@ -23,8 +23,9 @@ Steps to  install :
 
 TODO 
 
--- Assign project to student 
-    -- Popup to show the items
-    -- 
+-- Display name of the supervisor on the supervisor page
+-- show supervisors on project page
+-- Add the marks box on each stage and show it in the total (database changes)
+-- email
         
                 
