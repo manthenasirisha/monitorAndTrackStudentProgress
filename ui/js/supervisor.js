@@ -122,4 +122,8 @@ $("#searchProjectForm").submit(function( event ) {
 
 (function() {
     $("#searchProjectForm").submit();
+       var getSupervisorUrl = "http://localhost:3000/supervisor/"+ supervisorId;
+       $.get( getSupervisorUrl, function(supervisorResponse) {
+           $("#supervisorName").html(supervisorResponse.name);
+       });
 })();
