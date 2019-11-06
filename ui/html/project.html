@@ -64,55 +64,95 @@
     </div>
     <hr/>
     <div class="row">
-        <div class="col-sm-12">
-            <div class="progress" style="height: 40px;">
-                <div class="progress-bar" role="progressbar" id="progressBar-1" style="width: 12.5%; background-color: gray;"
-                     aria- valuenow="15" aria-valuemin="0"  aria-valuemax="100">
-                    Proposal - Ethical
-                </div>
-                <div class="progress-bar bg-white" role="progressbar" style="width: .4%" aria-valuenow="15" aria-valuemin="0"
-                     aria-valuemax="100">
-                </div>
-                <div class="progress-bar" role="progressbar" id="progressBar-2" style="width: 12.5%; background-color: gray;" aria-valuenow="30"
-                     aria-valuemin="0" aria-valuemax="100">Report Version 1
-                </div>
-                <div class="progress-bar bg-white" role="progressbar" style="width: .4%" aria-valuenow="15" aria-valuemin="0"
-                     aria-valuemax="100">
-                </div>
-                <div class="
-                    progress-bar" role="progressbar" id="progressBar-3" style="width: 12.5%;background-color: gray;" aria-valuenow="20" aria-valuemin="0"
-                     aria-valuemax="100">Report Version 2
-                </div>
-                <div class="progress-bar bg-white" role="progressbar" style="width: .4%" aria-valuenow="15" aria-valuemin="0"
-                     aria-valuemax="100">
-                </div>
-                <div class="progress-bar" role="progressbar" id="progressBar-5" style="width: 12.5%;background-color: gray;" aria-valuenow="20" aria-valuemin="0"
-                     aria-valuemax="100">Presentation
-                </div>
-                <div class="progress-bar bg-white" role="progressbar" style="width: .4%" aria-valuenow="15" aria-valuemin="0"
-                     aria-valuemax="100">
-                </div>
-                <div class="progress-bar" role="progressbar" id="progressBar-6" style="width: 12.5%;background-color: gray;" aria-valuenow="20" aria-valuemin="0"
-                     aria-valuemax="100">Poster
-                </div>
-                <div class="progress-bar bg-white" role="progressbar" style="width: .4%" aria-valuenow="15" aria-valuemin="0"
-                     aria-valuemax="100">
-                </div>
-                <div class="progress-bar" role="progressbar" id="progressBar-7" style="width: 12.5%;background-color: gray;" aria-valuenow="20" aria-valuemin="0"
-                     aria-valuemax="100">Draft Report
-                </div>
-                <div class="progress-bar bg-white" role="progressbar" style="width: .4%" aria-valuenow="15" aria-valuemin="0"
-                     aria-valuemax="100">
-                </div>
-                <div class="progress-bar" role="progressbar" id="progressBar-8" style="width: 12.5%;;background-color: gray;" aria-valuenow="20" aria-valuemin="0"
-                     aria-valuemax="100">Final Report
-                </div>
-                <div class="progress-bar bg-white" role="progressbar" style="width: .4%" aria-valuenow="15" aria-valuemin="0"
-                     aria-valuemax="100">
-                </div>
-                <div class="progress-bar" role="progressbar" id="progressBar-9" style="width: 12.5%;background-color: gray;" aria-valuenow="20" aria-valuemin="0"
-                     aria-valuemax="100">Internal & External Viva
-                </div>
+        <div class="col-md-12">
+            <div  style="height: 50px;">
+                <button type="button"
+                        id="progressBar-1"
+                        class="btn btn-secondary btn-sm btn-inline"
+                        data-toggle="modal"
+                        data-target="#projectTrackingModal"
+                        data-action="update-project-tracking"
+                        data-phase-id="1"
+                        data-phase-name="Proposal-Ethical">
+                    Proposal-Ethical
+                </button>
+
+                <button type="button"
+                        id="progressBar-2"
+                        class="btn btn-secondary btn-sm btn-inline"
+                        data-toggle="modal"
+                        data-target="#projectTrackingModal"
+                        data-action="update-project-tracking"
+                        data-phase-id="2"
+                        data-phase-name="Report Version 1">
+                    Report Version 1
+                </button>
+
+                <button type="button"
+                        id="progressBar-3"
+                        class="btn btn-secondary btn-sm btn-inline"
+                        data-toggle="modal"
+                        data-target="#projectTrackingModal"
+                        data-action="update-project-tracking"
+                        data-phase-id="3"
+                        data-phase-name="Report Version 2">
+                    Report Version 2
+                </button>
+
+                <button type="button"
+                        id="progressBar-5"
+                        class="btn btn-secondary btn-sm btn-inline"
+                        data-toggle="modal"
+                        data-target="#projectTrackingModal"
+                        data-action="update-project-tracking"
+                        data-phase-id="5"
+                        data-phase-name="Presentation">
+                    Presentation
+                </button>
+
+                <button type="button"
+                        id="progressBar-6"
+                        class="btn btn-secondary btn-sm btn-inline"
+                        data-toggle="modal"
+                        data-target="#projectTrackingModal"
+                        data-action="update-project-tracking"
+                        data-phase-id="6"
+                        data-phase-name="Poster">
+                    Poster
+                </button>
+
+                <button type="button"
+                        id="progressBar-7"
+                        class="btn btn-secondary btn-sm btn-inline"
+                        data-toggle="modal"
+                        data-target="#projectTrackingModal"
+                        data-action="update-project-tracking"
+                        data-phase-id="7"
+                        data-phase-name="Draft Report">
+                    Draft Report
+                </button>
+
+                <button type="button"
+                        id="progressBar-8"
+                        class="btn btn-secondary btn-sm btn-inline"
+                        data-toggle="modal"
+                        data-target="#projectTrackingModal"
+                        data-action="update-project-tracking"
+                        data-phase-id="8"
+                        data-phase-name="Final Report">
+                    Final Report
+                </button>
+
+                <button type="button"
+                        id="progressBar-9"
+                        class="btn btn-secondary btn-sm btn-inline"
+                        data-toggle="modal"
+                        data-target="#projectTrackingModal"
+                        data-action="update-project-tracking"
+                        data-phase-id="9"
+                        data-phase-name="Internal & External Viva">
+                    Internal & External Viva
+                </button>
             </div>
         </div>
     </div>
@@ -191,13 +231,10 @@
                         <span id="message"></span>
                     </div>
                     <div class="form-group">
-                        <label for="phaseId">Select Phase</label>
-                        <select class="form-control"
-                                id="phaseId"
-                                name="phaseId"
-                                aria-describedby="phaseHelp">
-                        </select>
-                        <small id="phaseHelp" class="form-text text-muted">Please select a phase</small>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="phaseId" value="">
+                            <label class="form-check-label" for="phaseId" id="phaseLabelId">Phase Name Done</label>
+                        </div>
                     </div>
                     <div class="form-group" id="notesDivId">
                         <label for="notes">Enter Notes</label>

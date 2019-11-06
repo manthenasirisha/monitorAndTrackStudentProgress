@@ -21,7 +21,7 @@ $(document).ready(function() {
         var getProjectPhasesUrl = "http://localhost:3000/project/" + projectId + "/phases";
         $.get( getProjectPhasesUrl, function(responseBody) {
             $.each(responseBody.projectPhases, function(index, value){
-                 $("#progressBar-"+ value.phaseId).addClass("bg-success");
+                 $("#progressBar-"+ value.phaseId).addClass("btn-success");
             });
         });
 
@@ -62,7 +62,7 @@ $(document).ready(function() {
                 var getProjectPhasesUrl = "http://localhost:3000/project/" + studentData.projectId + "/phases";
                 $.get( getProjectPhasesUrl, function(responseBody) {
                     $.each(responseBody.projectPhases, function(index, value){
-                         $("#progressBar-"+ value.phaseId).addClass("bg-success");
+                         $("#progressBar-"+ value.phaseId).addClass("btn-success");
                     });
                 });
 
@@ -87,25 +87,23 @@ $("#projectTrackingModal").on('show.bs.modal', function (event) {
   $( "#message" ).empty();
   var relatedTarget = $(event.relatedTarget);
   var action = relatedTarget.data('action');
+  var phaseId = relatedTarget.data('phase-id');
+  var phaseName = relatedTarget.data('phase-name');
+  $("#phaseId").val(phaseId);
 
-   if(action == 'update-project-tracking') {
-       var getPendingProjectPhasesUrl = "http://localhost:3000/project/" + projectId + "/pending-phases";
-       $.get( getPendingProjectPhasesUrl, function(pendingPhasesResponse) {
-       $('#phaseId').empty();
-        $.each(pendingPhasesResponse.pendingPhases,function(index, item) {
-                $('#phaseId').append("<option id='" +  item.id + "'>" + item.description + "</option>");
-            });
-       });
-    } else if (action == 'delete-project-tracking') {
-       $("#notesDivId").attr('class', 'invisible');
-       var getAllProjectPhasesUrl = "http://localhost:3000/project/" + projectId + "/phases";
-       $.get( getAllProjectPhasesUrl, function(projectPhasesResponse) {
-       $('#phaseId').empty();
-        $.each(projectPhasesResponse.projectPhases,function(index, item) {
-                $('#phaseId').append("<option id='" +  item.phaseId + "'>" + item.phaseDescription + "</option>");
-            });
-       });
-    }
+   var getAllProjectPhasesUrl = "http://localhost:3000/project/" + projectId + "/phases";
+   $.get( getAllProjectPhasesUrl, function(projectPhasesResponse) {
+
+    $.each(projectPhasesResponse.projectPhases,function(index, item) {
+        if (phaseId === item.phaseId) {
+            $("#phaseId" ).prop( "checked", true );
+            $("#phaseLabelId").html(phaseName);
+            $("#notes").val(item.notes);
+            $("#marks").val(item.marks);
+        };
+    });
+   });
+
 });
 
 
@@ -115,14 +113,15 @@ $("#markProjectPhaseCompleteForm").submit(function( event ) {
 
 
   // Get some values from elements on the page:
+  var phaseIdChecked = $('#phaseId').is(':checked');
   var $form = $( this ),
-    phaseId = $form.find("#phaseId").children(":selected").attr("id"),
+    phaseId = $form.find("#phaseId").val(),
     markProjectPhaseCompleteUrl = "http://localhost:3000/project/" + projectId + "/phase/" + phaseId,
     deleteProjectPhaseCompleteUrl = "http://localhost:3000/project/" + projectId + "/phase/" + phaseId,
     notesObject = $form.find( "input[name='notes']");
     marksObject = $form.find( "input[name='marks']");
 
-    if($("#notesDivId").attr('class') != 'invisible') {
+    if(phaseIdChecked) {
          $.ajax({
             url: markProjectPhaseCompleteUrl,
             method: 'POST',
