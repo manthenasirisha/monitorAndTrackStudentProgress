@@ -90,6 +90,8 @@ $("#projectTrackingModal").on('show.bs.modal', function (event) {
   var phaseId = relatedTarget.data('phase-id');
   var phaseName = relatedTarget.data('phase-name');
   $("#phaseId").val(phaseId);
+  $("#phaseLabelId").html(phaseName);
+
 
    var getAllProjectPhasesUrl = "http://localhost:3000/project/" + projectId + "/phases";
    $.get( getAllProjectPhasesUrl, function(projectPhasesResponse) {
@@ -97,7 +99,6 @@ $("#projectTrackingModal").on('show.bs.modal', function (event) {
     $.each(projectPhasesResponse.projectPhases,function(index, item) {
         if (phaseId === item.phaseId) {
             $("#phaseId" ).prop( "checked", true );
-            $("#phaseLabelId").html(phaseName);
             $("#notes").val(item.notes);
             $("#marks").val(item.marks);
         };
