@@ -118,15 +118,15 @@
     </div>
     <hr/>
 
-    <div class="row">
-        <div class="col-sm-6">
+    <div class="row" style="height: 400px;">
+        <div class="col-sm-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Student Information</h5>
                     <p class="card-text">
                         <ul class="list-group">
                             <li class="list-group-item">
-                                Student Id: <span id="studentId">test</span>
+                                Student Id: <span id="studentId"></span>
                             </li>
                             <li class="list-group-item">
                                 Student Name: <span id="studentName"> </span>
@@ -139,10 +139,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Project information</h5>
+                    <h5 class="card-title">Project Information</h5>
                     <p class="card-text">
                         <ul class="list-group">
                             <li class="list-group-item">
@@ -155,6 +155,17 @@
                                 Project Description: <span id="projectDescription"> </span>
                             </li>
                       </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Supervisor Information</h5>
+                    <p class="card-text">
+                    <ul class="list-group" id="supervisorsUl">
+                    </ul>
                     </p>
                 </div>
             </div>
@@ -194,6 +205,13 @@
                                placeholder="Enter Notes">
                         <small id="notesHelp" class="form-text text-muted">Please enter notes</small>
                     </div>
+                    <div class="form-group" id="marksDivId">
+                        <label for="marks">Enter Marks</label>
+                        <input type="number" class="form-control" id="marks" name="marks" aria-describedby="marksHelp" placeholder="Enter Marks"
+                               min="1" max="50">
+                        <small id="marksHelp" class="form-text text-muted">Please enter marks</small>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

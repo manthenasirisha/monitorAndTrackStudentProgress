@@ -209,6 +209,24 @@ exports.getStudentOfProject = function(request, response) {
 };
 
 
+exports.getSupervisorsOfProject = function(request, response) {
+
+   var projectId = request.params.projectId;
+   response.header("Access-Control-Allow-Origin", "*");
+   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+  Project.getSupervisorsOfProject(projectId ,function(err, supervisors) {
+
+    if (err) {
+      response.send(err);
+      return;
+    }
+
+    response.send(supervisors);
+  });
+
+};
+
 exports.getPendingPhasesOfProject = function(request, response) {
 
    var projectId = request.params.projectId;

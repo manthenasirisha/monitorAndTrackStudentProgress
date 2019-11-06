@@ -133,3 +133,21 @@ exports.getAllAssignableProjectsForAStudent = function(request, response) {
   });
 
 };
+
+exports.getSupervisorsOfStudent = function(request, response) {
+
+   var studentId = request.params.studentId;
+   response.header("Access-Control-Allow-Origin", "*");
+   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+  Student.getSupervisorsOfStudent(studentId ,function(err, supervisors) {
+
+    if (err) {
+      response.send(err);
+      return;
+    }
+
+    response.send(supervisors);
+  });
+
+};

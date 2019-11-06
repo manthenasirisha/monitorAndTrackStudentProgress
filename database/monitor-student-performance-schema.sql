@@ -91,3 +91,4 @@
 
     ALTER TABLE `project_tracking` ADD UNIQUE (`project_id`, `phase_id`);
 
+    ALTER TABLE `project_tracking` ADD COLUMN `marks` int;

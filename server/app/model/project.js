@@ -149,6 +149,7 @@ Project.getProjectPhase = function getProjectPhase(projectId, phaseId, callback)
                     projectId : result[0].project_id,
                     phaseId : result[0].phase_id,
                     notes : result[0].notes,
+                    marks : result[0].marks,
                     submissionDate : result[0].submission_date,
                 };
             }
@@ -162,11 +163,11 @@ Project.getProjectPhase = function getProjectPhase(projectId, phaseId, callback)
 Project.saveProjectPhase = function saveProjectPhase(projectPhase, projectId, phaseId, callback) {
 
   var now = new Date();
-  var values = [projectId, phaseId, projectPhase.notes, now];
+  var values = [projectId, phaseId, projectPhase.notes, projectPhase.marks, now];
   console.log(values);
 
   dbConnection.query (
-    "INSERT INTO project_tracking(project_id, phase_id, notes, submission_date) VALUES (?, ?, ?, ?)",
+    "INSERT INTO project_tracking(project_id, phase_id, notes, marks,submission_date) VALUES (?, ?, ?, ?, ?)",
     values,
     function (err, result) {
         if(err) {
@@ -179,6 +180,7 @@ Project.saveProjectPhase = function saveProjectPhase(projectPhase, projectId, ph
                 projectId: projectId,
                 phaseId: phaseId,
                 notes: projectPhase.notes,
+                marks: projectPhase.marks,
                 submissionDate: now
             };
             callback(null, responsePayload);
@@ -207,7 +209,7 @@ Project.deleteProjectPhase = function deleteProjectPhase(projectId, phaseId, cal
 
 Project.getAllProjectPhases = function getAllProjectPhases(projectId, callback) {
 
-  var query = "SELECT pt.id, project_id, notes, submission_date , phase_id, ph.name as phName, ph.description as phDesc FROM project_tracking pt, phase ph  WHERE ph.id = phase_id and project_id = " + projectId
+  var query = "SELECT pt.id, project_id, pt.notes, pt.marks, submission_date , phase_id, ph.name as phName, ph.description as phDesc FROM project_tracking pt, phase ph  WHERE ph.id = phase_id and project_id = " + projectId
 
   dbConnection.query (query,
     function (err, result) {
@@ -222,6 +224,7 @@ Project.getAllProjectPhases = function getAllProjectPhases(projectId, callback) 
                   projectId : item.project_id,
                   phaseId : item.phase_id,
                   notes : item.notes,
+                  marks : item.marks,
                   submissionDate : item.submission_date,
                   phaseName: item.phName,
                   phaseDescription: item.phDesc
@@ -266,6 +269,34 @@ Project.getStudentOfProject = function getStudentOfProject(projectId, callback) 
   );
 }
 
+
+Project.getSupervisorsOfProject = function getSupervisorsOfProject(projectId, callback) {
+
+  var query = "select id, name, identification_number from supervisor where id in (select supervisor_id from supervisor_project  where project_id = ?)";
+  var values = [projectId];
+
+  dbConnection.query (query,
+  values,
+    function (err, result) {
+        if(err) {
+            console.log("error: ", err);
+            callback(err, null);
+        }
+        else {
+            var supervisorArray = [];
+            result.forEach(function(item) {
+                supervisorArray.push( {
+                    id : item.id,
+                    name : item.name,
+                    identificationNumber : item.identification_number,
+                 });
+            });
+
+            callback(null, { supervisors: supervisorArray } );
+        }
+     }
+  );
+}
 
 Project.getPendingPhasesOfProject = function getPendingPhasesOfProject(projectId, callback) {
 

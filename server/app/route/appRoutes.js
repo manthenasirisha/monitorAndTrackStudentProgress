@@ -25,6 +25,8 @@ module.exports = function(app) {
         .put(studentController.updateStudent);
   app.route('/student/:studentId/assignableProjects')
           .get(studentController.getAllAssignableProjectsForAStudent);
+  app.route('/student/:studentId/supervisors')
+        .get(studentController.getSupervisorsOfStudent);
 
   app.route('/batch/all')
     .get(batchController.getAllBatches);
@@ -44,6 +46,8 @@ module.exports = function(app) {
    .put(projectController.updateProject);
   app.route('/project/:projectId/student')
       .get(projectController.getStudentOfProject);
+  app.route('/project/:projectId/supervisors')
+      .get(projectController.getSupervisorsOfProject);
 
   app.route('/project/:projectId/phase/:phaseId')
       .post(projectController.saveProjectPhase);

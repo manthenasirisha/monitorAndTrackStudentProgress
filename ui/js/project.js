@@ -32,6 +32,13 @@ $(document).ready(function() {
             $('#identificationNumber').html(studentData.identificationNumber);
         });
 
+        var getSupervisorsUrlFromProjectIdUrl = "http://localhost:3000/project/" + projectId + "/supervisors";
+        $.get( getSupervisorsUrlFromProjectIdUrl, function(responseBody) {
+            $.each(responseBody.supervisors, function(index, supervisorData){
+                $('#supervisorsUl').append("<li class='list-group-item'>"  + supervisorData.name + "</li>");
+            });
+        });
+
     } else if (studentId) {
         var getStudentUrl = "http://localhost:3000/student/" + studentId;
         $.get( getStudentUrl, function(studentData) {
@@ -56,6 +63,13 @@ $(document).ready(function() {
                 $.get( getProjectPhasesUrl, function(responseBody) {
                     $.each(responseBody.projectPhases, function(index, value){
                          $("#progressBar-"+ value.phaseId).addClass("bg-success");
+                    });
+                });
+
+                var getSupervisorsUrlFromStudentIdUrl = "http://localhost:3000/student/" + studentId + "/supervisors";
+                $.get( getSupervisorsUrlFromStudentIdUrl, function(responseBody) {
+                    $.each(responseBody.supervisors, function(index, supervisorData){
+                        $('#supervisorsUl').append("<li class='list-group-item'>"  + supervisorData.name + "</li>");
                     });
                 });
             }
@@ -106,6 +120,7 @@ $("#markProjectPhaseCompleteForm").submit(function( event ) {
     markProjectPhaseCompleteUrl = "http://localhost:3000/project/" + projectId + "/phase/" + phaseId,
     deleteProjectPhaseCompleteUrl = "http://localhost:3000/project/" + projectId + "/phase/" + phaseId,
     notesObject = $form.find( "input[name='notes']");
+    marksObject = $form.find( "input[name='marks']");
 
     if($("#notesDivId").attr('class') != 'invisible') {
          $.ajax({
@@ -118,7 +133,7 @@ $("#markProjectPhaseCompleteForm").submit(function( event ) {
                 $( "#message" ).attr('class', 'alert alert-success').empty().append( "Phase saved successfully" );
                 // close the popup
             },
-            data: { "notes": notesObject.val() }
+            data: { "notes": notesObject.val() , "marks": marksObject.val() }
          });
      } else {
          $.ajax({

@@ -195,6 +195,33 @@ Student.getAllAssignableProjectsForAStudent = function getAllAssignableProjectsF
 }
 
 
+Student.getSupervisorsOfStudent = function getSupervisorsOfStudent(studentId, callback) {
+
+  var query = "select id, name, identification_number from supervisor where id in ( select sp.supervisor_id from supervisor_project sp, student s where sp.project_id = s.project_id and s.id = ?)";
+  var values = [studentId];
+
+  dbConnection.query (query,
+  values,
+    function (err, result) {
+        if(err) {
+            console.log("error: ", err);
+            callback(err, null);
+        }
+        else {
+            var supervisorArray = [];
+            result.forEach(function(item) {
+                supervisorArray.push( {
+                    id : item.id,
+                    name : item.name,
+                    identificationNumber : item.identification_number,
+                 });
+            });
+
+            callback(null, { supervisors: supervisorArray } );
+        }
+     }
+  );
+}
 
 module.exports = Student;
 

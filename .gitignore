@@ -1,1 +1,5 @@
 node_modules
+/monitorAndTrackStudentProgress.iml
+/npm-debug.log
+/server/npm-debug.log
+/.idea/

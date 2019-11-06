@@ -23,7 +23,6 @@ Steps to  install :
 
 TODO 
 
--- Display name of the supervisor on the supervisor page
 -- show supervisors on project page
 -- Add the marks box on each stage and show it in the total (database changes)
 -- email
