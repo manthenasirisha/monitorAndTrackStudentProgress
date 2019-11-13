@@ -90,7 +90,7 @@ Student.getAllStudents = function getAllStudents(callback) {
 Student.searchStudent = function findStudents(searchString, callback) {
 
   dbConnection.query (
-    "SELECT s.id, s.name as sName, b.start_date, p.name as pName FROM student s, program p, batch b WHERE s.batch_id = b.id and b.start_date > '2018-01-01' and b.program_id = p.id and s.name like '%" + searchString + "%'",
+    "SELECT s.id, s.name as sName, s.project_id as projectId, b.start_date, p.name as pName FROM student s, program p, batch b WHERE s.batch_id = b.id and b.start_date > '2018-01-01' and b.program_id = p.id and s.name like '%" + searchString + "%'",
     function (err, result) {
         if(err) {
             console.log("error: ", err);
@@ -104,6 +104,7 @@ Student.searchStudent = function findStudents(searchString, callback) {
                     studentId : item.id,
                     batchStartDate : item.start_date,
                     programName : item.pName,
+                    projectId: item.projectId
                  });
             });
 

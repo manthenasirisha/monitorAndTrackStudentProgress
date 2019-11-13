@@ -139,7 +139,7 @@ $("#searchStudentForm").submit(function( event ) {
         $(function() {
             $.each(data.students, function(i, item) {
 
-                var $tr = $('<tr>').append(
+                $('<tr>').append(
                     $('<th>').text(item.studentId),
                     $('<td>').append($('<a>')
                             .attr('href', 'project.html?studentId=' + item.studentId)
@@ -155,7 +155,7 @@ $("#searchStudentForm").submit(function( event ) {
                          .attr('data-action', 'edit')
                          .text('Edit Student')
                        ),
-                   $('<td>').append($('<button>')
+                    $('<td>').append($('<button>')
                        .attr('class','btn btn-danger btn-sm')
                        .attr('data-toggle', 'modal')
                        .attr('data-student-id', item.studentId)
@@ -164,8 +164,57 @@ $("#searchStudentForm").submit(function( event ) {
                        .click(function() {
                            deleteItem(item.studentId);
                        })
-                     )
+                     ),
+                     $('<td>').text(''),
+                     $('<td>').text(''),
+                     $('<td>').text('')
                 ).appendTo('#studentsBody');
+
+                var pId = item.projectId;
+                $('<tr>').append(
+                    $('<th>').text(''),
+                    $('<td>').append($('<span>')
+                                    .attr('class', 'label label-default')
+                                    .attr('id', 'progressBar-1-' + pId)
+                                    .text('Proposal-Ethical')),
+                    $('<td>').append($('<span>')
+                                     .attr('class', 'label label-default')
+                                     .attr('id', 'progressBar-2-' + pId)
+                                     .text('Report Version 1')),
+                    $('<td>').append($('<span>')
+                                     .attr('class', 'label label-default')
+                                     .attr('id', 'progressBar-3-' + pId)
+                                     .text('Report Version 2')),
+                    $('<td>').append($('<span>')
+                                     .attr('class', 'label label-default')
+                                     .attr('id', 'progressBar-5-' + pId)
+                                     .text('Presentation')),
+                    $('<td>').append($('<span>')
+                                     .attr('class', 'label label-default')
+                                     .attr('id', 'progressBar-6-' + pId)
+                                     .text('Poster')),
+                    $('<td>').append($('<span>')
+                                     .attr('class', 'label label-default')
+                                     .attr('id', 'progressBar-7-' + pId)
+                                     .text('Draft Report')),
+                    $('<td>').append($('<span>')
+                                     .attr('class', 'label label-default')
+                                     .attr('id', 'progressBar-8-' + pId)
+                                     .text('Final Report')),
+                    $('<td>').append($('<span>')
+                                     .attr('class', 'label label-default')
+                                     .attr('id', 'progressBar-9-' + pId)
+                                     .text('Internal & External Viva'))
+                ).appendTo('#studentsBody');
+
+                (function() {
+                    var getProjectTrackingUrl = "http://localhost:3000/project/" + pId + "/tracking";
+                    $.get( getProjectTrackingUrl, function(responseBody) {
+                        $.each(responseBody.projectPhases, function(index, value){
+                             $("#progressBar-"+ value.phaseId + "-" + pId).addClass("btn-success");
+                        });
+                    });
+                })(pId);
 
             });
         });
