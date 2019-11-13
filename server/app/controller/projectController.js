@@ -110,12 +110,31 @@ exports.searchProjects = function(request, response) {
 
 };
 
-exports.saveProjectPhase = function(request, response) {
+exports.saveProjectTracking = function(request, response) {
 
    var projectId = request.params.projectId;
-   var phaseId = request.params.phaseId;
 
-  Project.saveProjectPhase(request.body, projectId, phaseId , function(err, savedProjectPhase) {
+  Project.saveProjectTracking(request.body, projectId, function(err, savedProjectPhase) {
+   console.log('controller')
+   response.header("Access-Control-Allow-Origin", "*");
+   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+    if (err) {
+      response.send(err);
+      return;
+    }
+
+    response.send(savedProjectPhase);
+  });
+
+};
+
+exports.updateProjectTracking = function(request, response) {
+
+   var projectId = request.params.projectId;
+   var phaseId = request.params.trackingId;
+
+  Project.updateProjectTracking(request.body, projectId, phaseId , function(err, savedProjectPhase) {
    console.log('controller')
    response.header("Access-Control-Allow-Origin", "*");
    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -151,11 +170,11 @@ exports.getProjectPhase = function(request, response) {
 
 };
 
-exports.getAllProjectPhases = function(request, response) {
+exports.getProjectTracking = function(request, response) {
 
   var projectId = request.params.projectId;
 
-  Project.getAllProjectPhases(projectId, function(err, projectPhases) {
+  Project.getProjectTracking(projectId, function(err, projectPhases) {
    console.log('controller')
    response.header("Access-Control-Allow-Origin", "*");
    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -170,14 +189,13 @@ exports.getAllProjectPhases = function(request, response) {
 
 };
 
-exports.deleteProjectPhase = function(request, response) {
+exports.deleteProjectTracking = function(request, response) {
 
-   var  projectId = request.params.projectId;
-   var  phaseId = request.params.phaseId;
+   var  trackingId = request.params.trackingId;
    response.header("Access-Control-Allow-Origin", "*");
    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-  Project.deleteProjectPhase(projectId, phaseId ,function(err, output) {
+  Project.deleteProjectTracking(trackingId, function(err, output) {
 
     if (err) {
       response.send(err);

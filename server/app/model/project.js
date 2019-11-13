@@ -160,10 +160,10 @@ Project.getProjectPhase = function getProjectPhase(projectId, phaseId, callback)
   );
 }
 
-Project.saveProjectPhase = function saveProjectPhase(projectPhase, projectId, phaseId, callback) {
+Project.saveProjectTracking = function saveProjectTracking(projectPhase, projectId, callback) {
 
   var now = new Date();
-  var values = [projectId, phaseId, projectPhase.notes, projectPhase.marks, now];
+  var values = [projectId, projectPhase.phaseId, projectPhase.notes, projectPhase.marks, now];
   console.log(values);
 
   dbConnection.query (
@@ -178,7 +178,7 @@ Project.saveProjectPhase = function saveProjectPhase(projectPhase, projectId, ph
             var responsePayload = {
                 id: result.insertId,
                 projectId: projectId,
-                phaseId: phaseId,
+                phaseId: projectPhase.phaseId,
                 notes: projectPhase.notes,
                 marks: projectPhase.marks,
                 submissionDate: now
@@ -189,9 +189,37 @@ Project.saveProjectPhase = function saveProjectPhase(projectPhase, projectId, ph
   );
 }
 
-Project.deleteProjectPhase = function deleteProjectPhase(projectId, phaseId, callback) {
+Project.updateProjectTracking = function updateProjectTracking(projectPhase, projectId, projectTrackingId, callback) {
 
-    var query = "DELETE FROM project_tracking WHERE project_id = " + projectId + " and phase_id = " + phaseId;
+  var now = new Date();
+  var values = [projectPhase.notes, projectPhase.marks, now];
+
+  dbConnection.query (
+    "update project_tracking set notes = ?, marks = ? , submission_date = ? where id = " + projectTrackingId ,
+    values,
+    function (err, result) {
+        if(err) {
+            console.log("error: ", err);
+            callback(err, null);
+        }
+        else {
+            var responsePayload = {
+                id: projectTrackingId,
+                projectId: projectId,
+                phaseId: projectPhase.phaseId,
+                notes: projectPhase.notes,
+                marks: projectPhase.marks,
+                submissionDate: now
+            };
+            callback(null, responsePayload);
+        }
+     }
+  );
+}
+
+Project.deleteProjectTracking = function deleteProjectTracking(projectTrackingId, callback) {
+
+    var query = "DELETE FROM project_tracking WHERE id = " + projectTrackingId;
 
     dbConnection.query (query,
       function (err, result) {
@@ -207,7 +235,7 @@ Project.deleteProjectPhase = function deleteProjectPhase(projectId, phaseId, cal
     );
 }
 
-Project.getAllProjectPhases = function getAllProjectPhases(projectId, callback) {
+Project.getProjectTracking = function getProjectTracking(projectId, callback) {
 
   var query = "SELECT pt.id, project_id, pt.notes, pt.marks, submission_date , phase_id, ph.name as phName, ph.description as phDesc FROM project_tracking pt, phase ph  WHERE ph.id = phase_id and project_id = " + projectId
 

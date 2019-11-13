@@ -39,31 +39,6 @@
         <h4 style="text-align:center">Project Tracking</h4>
     <hr/>
     <div class="row">
-        <div class="col-12 col-md-8">
-            <button type="button"
-                    id="updateProjectTrackingId"
-                    class="btn btn-primary btn-sm btn-inline"
-                    data-toggle="modal"
-                    data-target="#projectTrackingModal"
-                    data-action="update-project-tracking">
-                Update Project Tracking
-            </button>
-        </div>
-
-        <div class="col-6 col-md-4">
-            <button type="button"
-                    id="deleteProjectTrackingId"
-                    class="btn btn-primary btn-sm btn-inline"
-                    data-toggle="modal"
-                    data-target="#projectTrackingModal"
-                    data-action="delete-project-tracking">
-                Delete Project Tracking
-            </button>
-        </div>
-
-    </div>
-    <hr/>
-    <div class="row">
         <div class="col-md-12">
             <div  style="height: 50px;">
                 <button type="button"
@@ -72,6 +47,7 @@
                         data-toggle="modal"
                         data-target="#projectTrackingModal"
                         data-action="update-project-tracking"
+                        data-project-tracking-id=""
                         data-phase-id="1"
                         data-phase-name="Proposal-Ethical">
                     Proposal-Ethical
@@ -83,6 +59,7 @@
                         data-toggle="modal"
                         data-target="#projectTrackingModal"
                         data-action="update-project-tracking"
+                        data-project-tracking-id=""
                         data-phase-id="2"
                         data-phase-name="Report Version 1">
                     Report Version 1
@@ -94,6 +71,7 @@
                         data-toggle="modal"
                         data-target="#projectTrackingModal"
                         data-action="update-project-tracking"
+                        data-project-tracking-id=""
                         data-phase-id="3"
                         data-phase-name="Report Version 2">
                     Report Version 2
@@ -105,6 +83,7 @@
                         data-toggle="modal"
                         data-target="#projectTrackingModal"
                         data-action="update-project-tracking"
+                        data-project-tracking-id=""
                         data-phase-id="5"
                         data-phase-name="Presentation">
                     Presentation
@@ -116,6 +95,7 @@
                         data-toggle="modal"
                         data-target="#projectTrackingModal"
                         data-action="update-project-tracking"
+                        data-project-tracking-id=""
                         data-phase-id="6"
                         data-phase-name="Poster">
                     Poster
@@ -127,6 +107,7 @@
                         data-toggle="modal"
                         data-target="#projectTrackingModal"
                         data-action="update-project-tracking"
+                        data-project-tracking-id=""
                         data-phase-id="7"
                         data-phase-name="Draft Report">
                     Draft Report
@@ -138,6 +119,7 @@
                         data-toggle="modal"
                         data-target="#projectTrackingModal"
                         data-action="update-project-tracking"
+                        data-project-tracking-id=""
                         data-phase-id="8"
                         data-phase-name="Final Report">
                     Final Report
@@ -149,6 +131,7 @@
                         data-toggle="modal"
                         data-target="#projectTrackingModal"
                         data-action="update-project-tracking"
+                        data-project-tracking-id=""
                         data-phase-id="9"
                         data-phase-name="Internal & External Viva">
                     Internal & External Viva
@@ -226,6 +209,7 @@
                 </button>
             </div>
             <form action="/" id="markProjectPhaseCompleteForm">
+                <input type="hidden" id="projectTrackingId" name="projectTrackingId" value=""/>
                 <div class="modal-body">
                     <div class="form-group">
                         <span id="message"></span>

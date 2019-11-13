@@ -49,14 +49,16 @@ module.exports = function(app) {
   app.route('/project/:projectId/supervisors')
       .get(projectController.getSupervisorsOfProject);
 
-  app.route('/project/:projectId/phase/:phaseId')
-      .post(projectController.saveProjectPhase);
-  app.route('/project/:projectId/phase/:phaseId')
+  app.route('/project/:projectId/tracking')
+      .post(projectController.saveProjectTracking);
+  app.route('/project/:projectId/tracking/:trackingId')
+       .put(projectController.updateProjectTracking);
+  app.route('/project/:projectId/tracking/:trackingId')
         .get(projectController.getProjectPhase);
-  app.route('/project/:projectId/phases')
-      .get(projectController.getAllProjectPhases);
-  app.route('/project/:projectId/phase/:phaseId')
-      .put(projectController.deleteProjectPhase);
+  app.route('/project/:projectId/tracking')
+      .get(projectController.getProjectTracking);
+  app.route('/project/:projectId/tracking/:trackingId/delete')
+      .put(projectController.deleteProjectTracking);
   app.route('/project/:projectId/pending-phases')
         .get(projectController.getPendingPhasesOfProject);
 
