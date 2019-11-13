@@ -23,6 +23,9 @@ $(document).ready(function() {
             $.each(responseBody.projectPhases, function(index, value){
                  $("#progressBar-"+ value.phaseId).addClass("btn-success");
                  $("#progressBar-"+ value.phaseId).attr('data-project-tracking-id', value.id)
+                 if(value.marks) {
+                    $("#progressBar-"+ value.phaseId + "-marks").html(value.marks)
+                 }
             });
         });
 
@@ -65,6 +68,9 @@ $(document).ready(function() {
                     $.each(responseBody.projectPhases, function(index, value){
                          $("#progressBar-"+ value.phaseId).addClass("btn-success");
                          $("#progressBar-"+ value.phaseId).attr('data-project-tracking-id', value.id)
+                         if(value.marks) {
+                            $("#progressBar-"+ value.phaseId + "-marks").html(value.marks)
+                          }
                     });
                 });
 
