@@ -139,7 +139,8 @@ $("#searchStudentForm").submit(function( event ) {
         $(function() {
             $.each(data.students, function(i, item) {
 
-                $('<tr>').append(
+                $('<tr>').attr('class', 'table-active')
+                    .append(
                     $('<th>').text(item.studentId),
                     $('<td>').append($('<a>')
                             .attr('href', 'project.html?studentId=' + item.studentId)
@@ -174,35 +175,35 @@ $("#searchStudentForm").submit(function( event ) {
                 $('<tr>').append(
                     $('<th>').text(''),
                     $('<td>').append($('<span>')
-                                    .attr('class', 'label label-default')
+                                    .attr('class', 'badge badge-secondary')
                                     .attr('id', 'progressBar-1-' + pId)
                                     .text('Proposal-Ethical')),
                     $('<td>').append($('<span>')
-                                     .attr('class', 'label label-default')
+                                     .attr('class', 'badge badge-secondary')
                                      .attr('id', 'progressBar-2-' + pId)
                                      .text('Report Version 1')),
                     $('<td>').append($('<span>')
-                                     .attr('class', 'label label-default')
+                                     .attr('class', 'badge badge-secondary')
                                      .attr('id', 'progressBar-3-' + pId)
                                      .text('Report Version 2')),
                     $('<td>').append($('<span>')
-                                     .attr('class', 'label label-default')
+                                     .attr('class', 'badge badge-secondary')
                                      .attr('id', 'progressBar-5-' + pId)
                                      .text('Presentation')),
                     $('<td>').append($('<span>')
-                                     .attr('class', 'label label-default')
+                                     .attr('class', 'badge badge-secondary')
                                      .attr('id', 'progressBar-6-' + pId)
                                      .text('Poster')),
                     $('<td>').append($('<span>')
-                                     .attr('class', 'label label-default')
+                                     .attr('class', 'badge badge-secondary')
                                      .attr('id', 'progressBar-7-' + pId)
                                      .text('Draft Report')),
                     $('<td>').append($('<span>')
-                                     .attr('class', 'label label-default')
+                                     .attr('class', 'badge badge-secondary')
                                      .attr('id', 'progressBar-8-' + pId)
                                      .text('Final Report')),
                     $('<td>').append($('<span>')
-                                     .attr('class', 'label label-default')
+                                     .attr('class', 'badge badge-secondary')
                                      .attr('id', 'progressBar-9-' + pId)
                                      .text('Internal & External Viva'))
                 ).appendTo('#studentsBody');
@@ -211,7 +212,7 @@ $("#searchStudentForm").submit(function( event ) {
                     var getProjectTrackingUrl = "http://localhost:3000/project/" + pId + "/tracking";
                     $.get( getProjectTrackingUrl, function(responseBody) {
                         $.each(responseBody.projectPhases, function(index, value){
-                             $("#progressBar-"+ value.phaseId + "-" + pId).addClass("btn-success");
+                             $("#progressBar-"+ value.phaseId + "-" + pId).addClass("badge-success");
                         });
                     });
                 })(pId);
