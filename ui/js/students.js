@@ -1,10 +1,14 @@
-       // data-* attributes to scan when populating modal values
-var ATTRIBUTES = ['student-id','action'];
-
+// when the student search form model is hidden submit the
+// search form so that the students.html data is refreshed
 $('#myModal').on('hidden.bs.modal', function (event) {
     $("#searchStudentForm").submit();
 });
 
+/**
+ - handler for the myModal when it is being shown
+ - since same modal is used for edit and add student
+   this handler handles both edit and add student flows
+*/
 $("#myModal").on('show.bs.modal', function (event) {
   var relatedTarget = $(event.relatedTarget);
   var studentId = relatedTarget.data('student-id');
@@ -24,11 +28,13 @@ $("#myModal").on('show.bs.modal', function (event) {
   dropdown.add(defaultOption);
   dropdown.selectedIndex = 0;
 
+   // get call to get all the batches
   $.get( getAllBatchesUrl, function(batchData) {
      $.each(batchData.batches, function (key, entry) {
         dropdown.append($('<option></option>').attr('value', entry.programId).text(entry.programName));
       });
 
+      // get all the assignable projects to the student
      var getAssignableProjectsUrl = "http://localhost:3000/student/" + studentId + "/assignableProjects";
      $.get( getAssignableProjectsUrl, function(assignableProjectsResponse) {
      $('#projectId').empty();
@@ -36,6 +42,9 @@ $("#myModal").on('show.bs.modal', function (event) {
               $('#projectId').append($('<option></option>').attr('value', item.id).text(item.name));
           });
 
+      // if the model is shown for the edit case then make a get call to
+      // get the existing student details and populate the form with
+      // the existing student details
      if(action === 'edit') {
           var getStudentUrl = "http://localhost:3000/student/" + studentId;
           $.get( getStudentUrl, function(studentData) {
@@ -52,7 +61,7 @@ $("#myModal").on('show.bs.modal', function (event) {
 
 });
 
-
+// function to delete a student
 function deleteItem(studentId) {
     if (confirm("Are you sure you want to delete the student?")) {
 
@@ -61,11 +70,13 @@ function deleteItem(studentId) {
         $.ajax({
             url: deleteStudentUrl,
             method: 'POST',
+            // on success of the student deletion submit the search form so that the main
+            // page gets refreshed with the latest data
             success: function(result) {
                 $("#searchStudentForm").submit();
                 // show success message
              },
-            data:{}
+            data:{} // submitted with empty payload as the studentId is passed as path param
         });
 
     }
@@ -78,7 +89,7 @@ $("#studentAddEditForm").submit(function( event ) {
   // Stop form from submitting normally
   event.preventDefault();
 
-  // Get some values from elements on the page:
+  // Get form values from the page:
   var $form = $( this ),
     studentId = $form.find( "input[name='studentId']" ).val(),
     studentName = $form.find( "input[name='studentName']" ).val(),
@@ -89,8 +100,8 @@ $("#studentAddEditForm").submit(function( event ) {
     editUrl = "http://localhost:3000/student/" + studentId;
 
 
-  // Send the data using post
   var posting;
+  // handle the add student case
   if(studentId == null || studentId === "") {
         posting = $.post( saveUrl, { name: studentName, identificationNumber: identificationNumber, batchId: batchId, projectId: projectId  } );
           // Put the results in a div
@@ -99,7 +110,7 @@ $("#studentAddEditForm").submit(function( event ) {
             $( "#message" ).attr('class', 'alert alert-success').empty().append( "Student saved successfully" );
         });
 
-  } else {
+  } else { // handle the edit student case
      $.ajax({
         url: editUrl,
         method: 'PUT',
@@ -115,12 +126,12 @@ $("#studentAddEditForm").submit(function( event ) {
 
 });
 
-// Attach a submit handler to    the form
+// Attach a submit handler to the search student form
 $("#searchStudentForm").submit(function( event ) {
   // Stop form from submitting normally
   event.preventDefault();
 
-  // Get some values from elements on the page:
+  // Get the search text from the searchStudentForm:
   var $form = $( this ),
     searchText = $form.find( "input[name='searchText']" ).val(),
     url = "http://localhost:3000/student?q=" + searchText;
@@ -128,7 +139,7 @@ $("#searchStudentForm").submit(function( event ) {
   // Send the data using post
   var getting = $.get( url );
 
-  // get the results in a div
+  // populate the students table using the response data
   getting.done(function( data ) {
     //reset the from and close
 
@@ -139,6 +150,7 @@ $("#searchStudentForm").submit(function( event ) {
         $(function() {
             $.each(data.students, function(i, item) {
 
+                // populate each student data in a row
                 $('<tr>').attr('class', 'table-active')
                     .append(
                     $('<th>').text(item.studentId),
@@ -171,6 +183,7 @@ $("#searchStudentForm").submit(function( event ) {
                      $('<td>').text('')
                 ).appendTo('#studentsBody');
 
+                // build a template for the project tracking phases
                 var pId = item.projectId;
                 $('<tr>').append(
                     $('<th>').text(''),
@@ -208,6 +221,8 @@ $("#searchStudentForm").submit(function( event ) {
                                      .text('Internal & External Viva'))
                 ).appendTo('#studentsBody');
 
+                // get the project tracking and populate the tracking information using
+                // the above template
                 (function() {
                     var getProjectTrackingUrl = "http://localhost:3000/project/" + pId + "/tracking";
                     $.get( getProjectTrackingUrl, function(responseBody) {
@@ -223,6 +238,7 @@ $("#searchStudentForm").submit(function( event ) {
   });
 });
 
+// this makes the students link of the menu bar to be active
 (function() {
     $("#studentsLink").addClass("active");
     $("#searchStudentForm").submit();
