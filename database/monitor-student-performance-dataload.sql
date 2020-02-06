@@ -10,17 +10,16 @@ VALUES
    ('Msc Computing By Research'),
    ('Phd Computing');
 
-INSERT INTO phase(`name`,`description`)
+INSERT INTO phase(`id`,`name`,`description`)
 VALUES
-    ('PE', 'Proposal - Ethical'),
-    ('RV1', 'Report Version 1'),
-    ('RV2', 'Report Version 2'),
-    --('M', 'Meeting'),
-    ('PRSN', 'Presentation'),
-    ('PSTR', 'Poster'),
-    ('DRP', 'Draft Report'),
-    ('FRP', 'Final Report'),
-    ('VIVA', 'Internal & External Viva');
+    (1,'PE', 'Proposal - Ethical'),
+    (2,'RV1', 'Report Version 1'),
+    (3,'RV2', 'Report Version 2'),
+    (5,'PRSN', 'Presentation'),
+    (6,'PSTR', 'Poster'),
+    (7,'DRP', 'Draft Report'),
+    (8,'FRP', 'Final Report'),
+    (9,'VIVA', 'Internal & External Viva');
 
 INSERT INTO batch (`program_id`, `project_start_date`, `start_date`)
 VALUES
@@ -33,7 +32,6 @@ VALUES
   (1, 1, '2019-03-22'),
   (1, 2, '2019-04-22'),
   (1, 3, '2019-05-22'),
-  (1, 4, '2019-06-22'),
   (1, 5, '2019-07-22'),
   (1, 6, '2019-08-22'),
   (1, 7, '2019-09-22'),
