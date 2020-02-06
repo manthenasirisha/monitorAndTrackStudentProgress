@@ -1,30 +1,32 @@
-Abstract: As part of this project I have chosen A PART (written in different language stack)
-         of the main academic project which is tracking and monitoring student progress of the academic project.
+------------------------------------------------------------------------------------------------------------------------
+Technologies: HTML/CSS/JavaScript,bootstrap,jquery,,Node Js,express js,and MySqL database.
+------------------------------------------------------------------------------------------------------------------------
+Required Software:
 
-Implementation: HTML/CSS/JavaScript,bootstrap,jquery,,Node Js,express js, and MySqL  database.
+1) XAMPP Server 
+    -- Here is the link to download https://sourceforge.net/projects/xampp/
+    -- The following will be used for this project  
+        -- Apache Web Server to host the html/css/js files
+        -- Mysql database
+2) NODEJS
+    -- Download nodejs from the below link
+    -- https://nodejs.org/en/download/
+3) Intellij IDE work on the project
+    -- Download Intellij IDE from the below link
+    -- https://www.jetbrains.com/idea/download/    
 
-Details
-→  In the student module the implementation is added to 
-	→ Add a student
-	→ Search a student
-	→ Edit a student information
-	→ Delete a Student**
-
-
+------------------------------------------------------------------------------------------------------------------------     
 Steps to  install :
 
-1) Run the db scripts on the XAMPP mysql server
-2) Run the 'npm  install' from C:\Users\psrvarma\Desktop\university\project\monitorAndTrackStudentProgress
-3) and run 'npm start' from C:\Users\psrvarma\Desktop\university\project\monitorAndTrackStudentProgress\server
+1) Run the database scripts on the XAMPP MYSQL SERVER
+    a) Run the data definition scripts on the mysqlserver from monitor-student-performance-schema.sql
+    b) Run the data manipulation scripts on the mysqlserver from monitor-student-performance-dataload.sql
+2) Run the 'npm  install' from project root directory 
+       example: C:\Users\psrvarma\Desktop\university\project\monitorAndTrackStudentProgress
+3) Run 'npm start' from directory server directory of the project
+       example: from C:\Users\psrvarma\Desktop\university\project\monitorAndTrackStudentProgress\server
+4) Copy the html, js and css files from ui directory into the <XAMPP-ROOT-DIR>\htdocs\monitorAndTrackStudentProgress folder
+       example: C:\xampp\htdocs\monitorAndTrackStudentProgress
+5) access the resource using http://localhost/monitorAndTrackStudentProgress/students.html
 
-4) Copy the students.html and students.js into the XAMPP htdocs webdevpractical folder
-5) access the resource using http://localhost/webdevpractical/students.html
-
-
-TODO 
-
--- show supervisors on project page
--- Add the marks box on each stage and show it in the total (database changes)
--- email
-        
-                
+------------------------------------------------------------------------------------------------------------------------
